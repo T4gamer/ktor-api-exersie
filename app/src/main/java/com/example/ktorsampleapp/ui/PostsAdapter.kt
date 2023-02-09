@@ -1,33 +1,35 @@
-package com.example.ktorsampleapp.ui.posts
+package com.example.ktorsampleapp.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.ktorexamplelab.model.posts_feed.PostFeedItem
 import com.example.ktorsampleapp.databinding.PostItemBinding
-import com.example.ktorsampleapp.model.remote.Post
 
 /**
  * Created by Taha Ben Ashur (https://github.com/tahaak67) on 07,Feb,2023
  */
-class PostAdapter : ListAdapter<Post, RecyclerView.ViewHolder>(DIFF_CALLBACK){
-    companion object{
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Post>() {
+class PostsAdapter() : ListAdapter<PostFeedItem, RecyclerView.ViewHolder>(
+    DIFF_CALLBACK
+) {
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<PostFeedItem>() {
 
-            override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
-                return oldItem.id == newItem.id
+            override fun areItemsTheSame(oldItem: PostFeedItem, newItem: PostFeedItem): Boolean {
+                return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+            override fun areContentsTheSame(oldItem: PostFeedItem, newItem: PostFeedItem): Boolean {
                 return oldItem.title == newItem.title || oldItem.content == newItem.content ||
                         oldItem.picture == newItem.picture
             }
 
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             RecyclerView.ViewHolder {
         val  binding: PostItemBinding =
@@ -45,12 +47,15 @@ class PostAdapter : ListAdapter<Post, RecyclerView.ViewHolder>(DIFF_CALLBACK){
 
     inner class ViewHolder(val itemBinding: PostItemBinding):
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(item: Post){
+
+        fun bind(item: PostFeedItem) {
+            Log.d("adapter", "bind $adapterPosition")
             itemBinding.apply {
                 tvTitle.text = item.title
                 tvContent.text = item.content
                 ivPicture.load(item.picture)
             }
         }
+
     }
 }
