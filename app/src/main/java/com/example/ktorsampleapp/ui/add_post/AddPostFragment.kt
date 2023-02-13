@@ -14,7 +14,9 @@ import com.example.ktorexamplelab.ui.add_post.AddPostViewModel
 import com.example.ktorsampleapp.R
 import com.example.ktorsampleapp.databinding.FragmentAddPostBinding
 import com.example.ktorsampleapp.utils.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddPostFragment : Fragment(R.layout.fragment_add_post) {
 
     private var _binding: FragmentAddPostBinding? = null

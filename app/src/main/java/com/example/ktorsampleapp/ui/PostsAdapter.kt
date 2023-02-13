@@ -13,9 +13,7 @@ import com.example.ktorsampleapp.databinding.PostItemBinding
 /**
  * Created by Taha Ben Ashur (https://github.com/tahaak67) on 07,Feb,2023
  */
-class PostsAdapter() : ListAdapter<PostFeedItem, RecyclerView.ViewHolder>(
-    DIFF_CALLBACK
-) {
+class PostsAdapter() : ListAdapter<PostFeedItem, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<PostFeedItem>() {
 
